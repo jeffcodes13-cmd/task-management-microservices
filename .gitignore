@@ -1,0 +1,16 @@
+# Build files
+bin/
+obj/
+.vs/
+
+# User settings
+*.user
+*.suo
+
+# Node (future frontend)
+node_modules/
+
+# Environment & secrets
+.env
+appsettings.Development.json
+appsettings.*.Development.json
