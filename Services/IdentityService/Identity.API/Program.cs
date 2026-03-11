@@ -89,19 +89,15 @@ builder.Services.AddSwaggerGen(options =>
 
 
 var app = builder.Build();
+
 app.UseMiddleware<Identity.API.Middleware.ExceptionMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
 app.UseAuthentication();
 app.UseAuthorization();
 
