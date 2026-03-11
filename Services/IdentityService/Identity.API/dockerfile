@@ -1,14 +1,18 @@
-# Build stage
+# ---------- BUILD ----------
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-COPY *.csproj .
+# Copy solution structure
+COPY . .
+
+# Restore from API project (will restore referenced projects too)
+WORKDIR /src/Identity.API
 RUN dotnet restore
 
-COPY . .
+# Publish
 RUN dotnet publish -c Release -o /app/publish
 
-# Runtime stage
+# ---------- RUNTIME ----------
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app/publish .
