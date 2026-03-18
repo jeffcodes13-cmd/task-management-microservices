@@ -5,12 +5,10 @@ WORKDIR /src
 COPY . .
 
 # Restore using solution
-WORKDIR /src
-RUN dotnet restore
+RUN dotnet restore Services/TaskService/TaskService.sln
 
-# Publish Task API
-WORKDIR /src/Services/TaskService/Task.API
-RUN dotnet publish -c Release -o /app/publish
+# Publish Task API (IMPORTANT PATH)
+RUN dotnet publish Services/TaskService/Task.API/TaskService.API.csproj -c Release -o /app/publish
 
 # Runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
@@ -21,4 +19,4 @@ COPY --from=build /app/publish .
 ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
-ENTRYPOINT ["dotnet", "TaskService.API.dll"]
+ENTRYPOINT ["dotnet", "Task.API.dll"]
