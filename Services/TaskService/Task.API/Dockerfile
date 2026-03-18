@@ -9,7 +9,7 @@ WORKDIR /src
 RUN dotnet restore
 
 # Publish Task API
-WORKDIR /src/Services/TaskService/TaskService.API
+WORKDIR /src/Services/TaskService/Task.API
 RUN dotnet publish -c Release -o /app/publish
 
 # Runtime image
