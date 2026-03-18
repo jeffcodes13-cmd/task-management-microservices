@@ -1,13 +1,18 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
+# Copy entire repo
 COPY . .
 
-WORKDIR /src/Services/TaskService/TaskService.API
-
+# Restore using solution
+WORKDIR /src
 RUN dotnet restore
+
+# Publish Task API
+WORKDIR /src/Services/TaskService/TaskService.API
 RUN dotnet publish -c Release -o /app/publish
 
+# Runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 
