@@ -7,6 +7,7 @@ using Identity.Domain.Interfaces;
 
 namespace Identity.Application.Services;
 
+//AuthService is responsible for handling user authentication, including registration, login, token generation, and token refresh. It interacts with the IUserRepository to manage user data and the IJwtTokenGenerator to create and validate JWT tokens. The service ensures that user credentials are securely hashed and that refresh tokens are properly managed to maintain security.
 public class AuthService : IAuthService
 {
     private readonly IUserRepository _userRepository;
