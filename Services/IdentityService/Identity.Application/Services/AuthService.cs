@@ -7,6 +7,7 @@ using Identity.Domain.Interfaces;
 
 namespace Identity.Application.Services;
 
+//AuthService
 public class AuthService : IAuthService
 {
     private readonly IUserRepository _userRepository;
